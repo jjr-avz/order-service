@@ -1,0 +1,8 @@
+ Fundo -> #ebece7
+ cabeçalho -> #0f8d50
+ Texto cabeçalho -> #f5fde2
+ Fundo area Login -> #e9ffb6
+ Botão Sair -> #6b3434
+ icone finalizado -> #b6b6b6
+ icone designado -> #dfd54d
+ Icone em aberto -> #0f8d50

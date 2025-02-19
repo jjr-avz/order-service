@@ -1,0 +1,40 @@
+a{
+    font-size: 16px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+button{
+    border: none;
+    font-size: 16px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+td{
+    font-size: 14px;
+    white-space: nowrap;
+        overflow: hidden; /* Esconde o conteúdo que ultrapassa */
+        text-overflow: ellipsis; /* Adiciona "..." caso fique muito grande */
+        max-width: 100%;
+    
+}
+
+.bt-edit{
+    background-color: #5e5e5e;
+    color: #fff;
+}
+
+.bt-delete{
+    background-color: rgb(184, 37, 37);
+    color: #fff;
+}
+
+.bt-entry{
+    color: #5e5e5e;
+}
+
+.disab{
+    cursor: not-allowed;
+    opacity: 0.3;
+}

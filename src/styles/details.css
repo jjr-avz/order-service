@@ -1,0 +1,70 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15%;
+}
+
+label{
+    font-size: 20px;
+    color: #2e2e2e;
+}
+
+p{
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #b6b6b6;
+    background-color: #e2e2e2;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+div{
+    width: 70%;
+}
+
+form{
+    width: 100%;
+}
+
+button{
+    height: 45px;
+    width: 105px;
+}
+
+.paragrafo{
+    text-align: justify;
+    height: 120px;
+}
+
+.area-inf{
+    margin-top: 5px;
+}
+
+.area-desig{
+    margin-top: 10px;
+    height: 150px;
+    width: 100%;
+    border: 1px solid #b6b6b6;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.area-btns{
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    padding-right: 35px;
+}
+
+.form-end{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
