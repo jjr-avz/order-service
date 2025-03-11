@@ -33,6 +33,22 @@ button{
     width: 105px;
 }
 
+fieldset{
+    margin-top: 30px;
+}
+
+legend{
+    font-size: 20px;
+    color: #2e2e2e;
+}
+
+
+.opField{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
 .paragrafo{
     text-align: justify;
     height: 120px;
@@ -44,7 +60,7 @@ button{
 
 .area-desig{
     margin-top: 10px;
-    height: 150px;
+    height: 250px;
     width: 100%;
     border: 1px solid #b6b6b6;
     border-radius: 6px;

@@ -4,8 +4,31 @@
 
     if(isset($_SESSION['id'])){
         require_once('../methods/connection.php');
-    
-        $stmt = $conn->prepare("SELECT * FROM services WHERE id_creator = ? ORDER BY date_creation");
+
+        $page = 1;
+        $limite = 14;
+
+        if(isset($_GET['page'])){
+            $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
+        }
+
+        if(!$page){
+            $page = 1;
+        }
+
+        $inicio = ($limite * $page) - $limite;
+
+        $stmtEnd = $conn->prepare("SELECT COUNT(id) AS count FROM services WHERE id_creator = ?");
+        $stmtEnd->bind_param("i", $_SESSION['id']);
+        $stmtEnd->execute();
+        $resEnd = $stmtEnd->get_result();
+        $row = $resEnd->fetch_assoc();
+        $maxRow = $row['count'];
+
+        $end = ceil($maxRow/$limite);
+
+        //CARREGANDO OS SERVIÇOS CRIADOS PELO USUARIO LOGADO
+        $stmt = $conn->prepare("SELECT * FROM services WHERE id_creator = ? ORDER BY date_creation LIMIT $inicio, $limite");
         $stmt->bind_param("i", $_SESSION['id']);
         $stmt->execute();
         $res = $stmt->get_result();
@@ -32,7 +55,17 @@
 
 </head>
 <body>
-    <div class="table-responsive">
+    <div class="sf-area">
+        <input class="sf-input">
+            <a>
+                <i class="bi bi-search sf-icon"></i>
+            </a>
+        </input>
+        <a>
+            <i class="bi bi-funnel-fill sf-icon"></i>
+        </a>
+    </div>
+    <div class="table-responsive tb-area">
         <table class="table">
             <thead class="table-light">
                 <tr>
@@ -85,6 +118,35 @@
             </tbody>
         </table>
     </div>
+    <nav aria-label="Page navigation example" style="margin-right: 3vw;">
+        <ul class="pagination justify-content-end">
+            <li class="page-item <?php if($page <= 1){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item <?php if($page <= 1){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $page-1 ?>" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#" style="cursor: default;"><?= $page ?></a></li>
+            <li class="page-item <?php if($page >= $end){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $page+1 ?>" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            </li>
+            <li class="page-item <?php if($page >= $end){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $end ?>" aria-label="Last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <script src="../scripts/confirm.js"></script>
 </body>
 </html>

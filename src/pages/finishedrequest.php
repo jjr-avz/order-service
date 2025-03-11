@@ -10,8 +10,31 @@
         }
 
         require_once('../methods/connection.php');
-    
-        $stmt = $conn->prepare("SELECT * FROM services WHERE status = 2 ORDER BY date_creation");
+        
+        //CONTANDO QUANTIDADE DE ITENS
+        $page = 1;
+        $limite = 14;
+
+        if(isset($_GET['page'])){
+            $page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
+        }
+
+        if(!$page){
+            $page = 1;
+        }
+
+        $inicio = ($limite * $page) - $limite;
+
+        $stmtEnd = $conn->prepare("SELECT COUNT(id) AS count FROM services WHERE status = 2");
+        $stmtEnd->execute();
+        $resEnd = $stmtEnd->get_result();
+        $row = $resEnd->fetch_assoc();
+        $maxRow = $row['count'];
+
+        $end = ceil($maxRow/$limite);
+
+        //CARREGANDO INFORMAÇÕES PARA A PAGINA
+        $stmt = $conn->prepare("SELECT * FROM services WHERE status = 2 ORDER BY date_creation LIMIT $inicio, $limite");
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
@@ -34,6 +57,11 @@
     <link rel="stylesheet" href="../styles/buttonstable.css">
 </head>
 <body>
+    <div class="sf-area">              
+        <a class="btn btn-primary">
+            <i class="bi bi-funnel-fill sf-icon"></i>
+        </a>
+    </div>
     <div class="table-responsive">
         <table class="table">
             <thead class="table-light">
@@ -65,12 +93,41 @@
                         $data_formatada = date("d/m/Y H:i", strtotime($user_data['date_end']));
                         echo "<td>".$data_formatada."</td>";
                         echo "<td style='color: #b6b6b6;'><i class='bi bi-check-circle'> Finalizado</td>";
-                        echo "<td><a type='button' href='viewSolution.php?id=$user_data[id]' class='btn btn-link'>Ver</a></td>";           
+                        echo "<td><a type='button' href='viewSolution.php?id=$user_data[id]' class='btn btn-link jj-send' style='font-size: 14px;'>Ver</a></td>";           
                         echo "</tr>";
                     }
                 ?>
             </tbody>
         </table>
     </div>
+    <nav aria-label="Page navigation example" style="margin-right: 3vw;">
+        <ul class="pagination justify-content-end">
+            <li class="page-item <?php if($page <= 1){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=1" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item <?php if($page <= 1){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $page-1 ?>" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#" style="cursor: default;"><?= $page ?></a></li>
+            <li class="page-item <?php if($page >= $end){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $page+1 ?>" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            </li>
+            <li class="page-item <?php if($page >= $end){
+                    echo 'disabled'; }?>">
+                <a class="page-link" href="?page=<?= $end ?>" aria-label="Last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </body>
 </html>

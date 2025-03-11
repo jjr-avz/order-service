@@ -11,9 +11,34 @@ body{
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
+footer{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    background-color: #0f8d50;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+footer > p{
+    color: #f5fde2;
+    margin: 0;
+    padding: 0;
+}
+
+footer > img{
+    height: 35px;
+}
+
+.areaDash{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+}
 .dashname{
     font-size: 14px;
     font-weight: bold;

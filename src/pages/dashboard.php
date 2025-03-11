@@ -21,78 +21,84 @@
 
 </head>
 <body>
-    <div class="container-sidebar">
-        <div class="area-user">
-            <div class="img-user">
-                <i class="bi bi-person-circle"></i>
-            </div>
-            <div class="info-user">
-                <span class="dashname"><?php echo $_SESSION['name']; ?></span>
-                <span class="dashposition"><?php echo $_SESSION['position']; ?></span>
-            </div>
-        </div>
-        <nav class="sidemenu">
-            <ul>
-                <?php 
-                    if($_SESSION['cod_position'] == 2){
-                        echo "
-                        <li class='item-menu' id='newUser' onclick='redirecionar(this)'>
-                            <a href='newUser.php' target='container-dashboard'><i class='bi bi-person-plus'></i> Cadastrar usuario</a>
-                        </li>
-                        <li class='item-menu' onclick='redirecionar(this)'>
-                            <a href='viewUsers.php' target='container-dashboard'><i class='bi bi-people'></i> Usuarios</a>
-                        </li>
-                        <li class='item-menu' onclick='redirecionar(this)'>
-                            <a href='viewrequest.php' target='container-dashboard'><i class='bi bi-tools'></i> Solicitações Pendentes</a>
-                        </li>";
-                    }
-                ?>
-                <li class="item-menu" onclick="redirecionar(this)">
-                    <a href="newOrder.php" target="container-dashboard"><i class="bi bi-pencil-square"></i> Nova Solicitação</a>
-                </li>
-                <?php 
-                    if($_SESSION['cod_position'] == 3){
-                        echo "
-                        <li class='item-menu' onclick='redirecionar(this)'>
-                            <a href='myservices.php' target='container-dashboard'><i class='bi bi-hourglass-split'></i> Meus Serviços</a>
-                        </li>";
-                    }
-                ?>
-                <li class="item-menu" onclick="redirecionar(this)">
-                    <a href="myrequest.php" target="container-dashboard"><i class="bi bi-wrench-adjustable-circle"></i> Minhas Solicitações</a>
-                </li>
-                <?php
-                    if($_SESSION['cod_position'] == 2){
-                        echo "
-                    <li class='item-menu' onclick='redirecionar(this)'>
-                        <a href='finishedrequest.php' target='container-dashboard'><i class='bi bi-check-circle'></i> Serviços Finalizados</a>
-                    </li>";
-                    }
-                ?>
-                <li onclick="redirecionar(this)">
-                    <a href="../methods/signOut.php"><i class="bi bi-box-arrow-left"></i> Sair</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- SESSÃO DO MODAL -->
-    <div class="modal fade" id="modalGlobal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">FOTO</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <img id="modalImagem" src="" class="img-fluid rounded" alt="foto do problema.">
-                    </div>                
+    <div class="areaDash">
+        <div class="container-sidebar">
+            <div class="area-user">
+                <a class="img-user" style="text-decoration: none; color: #666" href="editPass.php" target='container-dashboard'>
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <div class="info-user">
+                    <span class="dashname"><?php echo $_SESSION['name']; ?></span>
+                    <span class="dashposition"><?php echo $_SESSION['position']; ?></span>
                 </div>
             </div>
+            <nav class="sidemenu">
+                <ul>
+                    <?php 
+                        if($_SESSION['cod_position'] == 2){
+                            echo "
+                            <li class='item-menu' id='newUser' onclick='redirecionar(this)'>
+                                <a href='newUser.php' target='container-dashboard'><i class='bi bi-person-plus'></i> Cadastrar usuario</a>
+                            </li>
+                            <li class='item-menu' onclick='redirecionar(this)'>
+                                <a href='viewUsers.php' target='container-dashboard'><i class='bi bi-people'></i> Usuarios</a>
+                            </li>
+                            <li class='item-menu' onclick='redirecionar(this)'>
+                                <a href='viewrequest.php' target='container-dashboard'><i class='bi bi-tools'></i> Solicitações Pendentes</a>
+                            </li>";
+                        }
+                    ?>
+                    <li class="item-menu" onclick="redirecionar(this)">
+                        <a href="newOrder.php" target="container-dashboard"><i class="bi bi-pencil-square"></i> Nova Solicitação</a>
+                    </li>
+                    <?php 
+                        if($_SESSION['cod_position'] == 3){
+                            echo "
+                            <li class='item-menu' onclick='redirecionar(this)'>
+                                <a href='myservices.php' target='container-dashboard'><i class='bi bi-hourglass-split'></i> Meus Serviços</a>
+                            </li>";
+                        }
+                    ?>
+                    <li class="item-menu" onclick="redirecionar(this)">
+                        <a href="myrequest.php" target="container-dashboard"><i class="bi bi-wrench-adjustable-circle"></i> Minhas Solicitações</a>
+                    </li>
+                    <?php
+                        if($_SESSION['cod_position'] == 2){
+                            echo "
+                        <li class='item-menu' onclick='redirecionar(this)'>
+                            <a href='finishedrequest.php' target='container-dashboard'><i class='bi bi-check-circle'></i> Serviços Finalizados</a>
+                        </li>";
+                        }
+                    ?>
+                    <li onclick="redirecionar(this)">
+                        <a href="../methods/signOut.php"><i class="bi bi-box-arrow-left"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <!-- FIM DA SESSÃO DO MODAL -->
 
-    <iframe name="container-dashboard" class="container-dashboard"></iframe>
+        <!-- SESSÃO DO MODAL -->
+        <div class="modal fade" id="modalGlobal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">FOTO</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="modalImagem" src="" class="img-fluid rounded" alt="foto do problema.">
+                        </div>                
+                    </div>
+                </div>
+            </div>
+            <!-- FIM DA SESSÃO DO MODAL -->
+        <iframe name="container-dashboard" class="container-dashboard"></iframe>
+    </div>
+
+    <footer>
+        <img src="../imgs/logo-2025.png" alt="Logo da Prefeitura.">
+        <p>Prefeitura Municipal de Deodapolis - MS © 2025 - Todos os direitos reservados.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../scripts/modal.js"></script>

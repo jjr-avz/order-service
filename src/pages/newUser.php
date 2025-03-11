@@ -32,27 +32,28 @@
     <form action="../methods/signUp.php" method="POST">
         <div class="mb-3">
             <label class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" name="fullname">
+            <input type="text" class="form-control" name="fullname" required>
         </div>
         <div class="mb-3">
             <label class="form-label">E-mail</label>
-            <input type="email" class="form-control" name="email">
+            <input type="email" class="form-control" name="email" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Senha</label>
-            <input type="password" class="form-control" name="password">
+            <label class="form-label">Senha </label>
+            <input type="password" class="form-control" name="password" minlength="6" required>
+            <p style="font-size: 10px;">(Min: 6 caracteres)</p>
         </div>
         <div class="mb-3">
             <label class="form-label">Telefone</label>
-            <input type="text" class="form-control" name="contact">
+            <input type="text" class="form-control" id="numTel" name="contact" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Local de trabalho</label>
-            <input type="text" class="form-control" name="localwork">
+            <input type="text" class="form-control" name="localwork" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Cargo</label>
-            <input type="text" class="form-control" name="lotation">
+            <input type="text" class="form-control" name="lotation" required>
         </div>
         
         
@@ -84,5 +85,12 @@
 
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $('#numTel').mask('(00) 00000-0000');
+    </script>
 </body>
 </html>

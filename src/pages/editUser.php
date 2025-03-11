@@ -60,27 +60,28 @@
         <input type="hidden" name="id" value="<?php echo $id?>">
         <div class="mb-3">
             <label class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" name="fullname" value="<?php echo $pushname ?>">
+            <input type="text" class="form-control" name="fullname" value="<?php echo $pushname ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">E-mail</label>
-            <input type="email" class="form-control" name="email" value="<?php echo $pushemail ?>">
+            <input type="email" class="form-control" name="email" value="<?php echo $pushemail ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Senha</label>
-            <input type="password" class="form-control" name="password" placeholder="********">
+            <input type="password" class="form-control" name="password" placeholder="********" minlength="6">
+            <p style="font-size: 10px;">(Min: 6 caracteres)</p>
         </div>
         <div class="mb-3">
             <label class="form-label">Telefone</label>
-            <input type="text" class="form-control" name="contact" value="<?php echo $pushtel ?>">
+            <input type="text" class="form-control" name="contact" value="<?php echo $pushtel ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Local de trabalho</label>
-            <input type="text" class="form-control" name="localwork" value="<?php echo $pushlwork ?>">
+            <input type="text" class="form-control" name="localwork" value="<?php echo $pushlwork ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Cargo</label>
-            <input type="text" class="form-control" name="lotation" value="<?php echo $pushlotation ?>">
+            <input type="text" class="form-control" name="lotation" value="<?php echo $pushlotation ?>" required>
         </div>
 
         <div>

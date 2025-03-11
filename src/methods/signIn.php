@@ -31,6 +31,7 @@
         $_SESSION["position"] = $resuser->position;
         $_SESSION["cod_position"] = $resuser->cod_position;
         $_SESSION["id"] = $resuser->id;
+        $_SESSION["password"] = $resuser->password;
         
         header('location: ../pages/dashboard.php');
         exit();

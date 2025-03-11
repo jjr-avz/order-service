@@ -86,6 +86,31 @@
                             echo "<option name='techuser' value='".$eqp_data['id']."'>".$eqp_data['name']."</option>";
                         } ?>
                     </select>
+
+                    <fieldset>
+                        <legend>Grau de Prioridade</legend>
+
+                        <div class="opField">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priority" id="low" value="0" checked>
+                                <label class="form-check-label s-fs" for="low" style="font-size: 16px;">
+                                    Baixo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priority" id="medium" value="1">
+                                <label class="form-check-label s-fs" for="medium" style="font-size: 16px;">
+                                    Médio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priority" id="high" value="2">
+                                <label class="form-check-label s-fs" for="high" style="font-size: 16px;">
+                                    Alto
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
             </div>        
 

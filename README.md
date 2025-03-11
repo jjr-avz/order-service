@@ -24,3 +24,11 @@ EQUIPE MANUTENÇÃO
     -> MINHAS SOLICITAÇÕES
     -> MEUS SERVIÇOS
     
+
+**************************************
+
+PRIORIDADE
+
+0 -> BAIXO
+1 -> MEDIO
+2 -> ALTO
