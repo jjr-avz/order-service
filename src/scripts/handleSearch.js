@@ -7,5 +7,6 @@ search.addEventListener("keydown", function(event){
 })
 
 function searchData(){
-    window.location = 'viewUsers.php?search='+search.value;
+    const page = search.getAttribute("data-page");
+    window.location = page+'?search='+search.value;
 }

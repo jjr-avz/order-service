@@ -28,12 +28,20 @@
         $end = ceil($maxRow/$limite);
 
         //CARREGANDO OS SERVIÇOS CRIADOS PELO USUARIO LOGADO
-        $stmt = $conn->prepare("SELECT * FROM services WHERE id_creator = ? ORDER BY date_creation LIMIT $inicio, $limite");
-        $stmt->bind_param("i", $_SESSION['id']);
+        if(!empty($_GET['search'])){
+            $data = "%".$_GET['search']."%";
+
+            $stmt = $conn->prepare("SELECT * FROM services WHERE id_creator = ? AND ( id LIKE ? or brief_desc LIKE ? or local_problem LIKE ?) ORDER BY date_creation LIMIT $inicio, $limite");
+            $stmt->bind_param("iiss", $_SESSION['id'], $data, $data, $data);
+        }else{
+            $stmt = $conn->prepare("SELECT * FROM services WHERE id_creator = ? ORDER BY date_creation LIMIT $inicio, $limite");
+            $stmt->bind_param("i", $_SESSION['id']);
+        }
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 
 
@@ -56,14 +64,10 @@
 </head>
 <body>
     <div class="sf-area">
-        <input class="sf-input">
-            <a>
-                <i class="bi bi-search sf-icon"></i>
-            </a>
-        </input>
-        <a>
-            <i class="bi bi-funnel-fill sf-icon"></i>
-        </a>
+        <input class="sf-input" id="search" data-page="myrequest.php" placeholder="Buscar">
+        <a onclick="searchData()" class="btn btn-success">
+            <i class="bi bi-search sf-icon"></i>
+        </a>        
     </div>
     <div class="table-responsive tb-area">
         <table class="table">
@@ -148,5 +152,6 @@
         </ul>
     </nav>
     <script src="../scripts/confirm.js"></script>
+    <script src="../scripts/handleSearch.js"></script>
 </body>
 </html>

@@ -33,11 +33,19 @@
         $end = ceil($maxRow/$limite);
 
         //BUSCANDO DADOS PARA MOSTRAR NA PAGINA
-        $stmt = $conn->prepare("SELECT * FROM services WHERE status != 2 ORDER BY date_creation LIMIT $inicio, $limite");
+        if(!empty($_GET['search'])){
+            $data = "%".$_GET['search']."%";
+
+            $stmt = $conn->prepare("SELECT * FROM services WHERE id LIKE ? or local_problem LIKE ? or brief_desc LIKE ? ORDER BY date_creation LIMIT $inicio, $limite");
+            $stmt->bind_param("iss", $data, $data, $data);
+        }else{
+            $stmt = $conn->prepare("SELECT * FROM services WHERE status != 2 ORDER BY date_creation LIMIT $inicio, $limite");
+        }
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 ?>
 
@@ -57,14 +65,10 @@
 </head>
 <body>
     <div class="sf-area">
-        <input class="sf-input">
-            <a>
+        <input class="sf-input" id="search" data-page="viewrequest.php" placeholder="Buscar">
+            <a onclick="searchData()" class="btn btn-success">
                 <i class="bi bi-search sf-icon"></i>
-            </a>
-        </input>
-        <a>
-            <i class="bi bi-funnel-fill sf-icon"></i>
-        </a>
+            </a>        
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -142,5 +146,7 @@
             </li>
         </ul>
     </nav>
+
+    <script src="../scripts/handleSearch.js"></script>
 </body>
 </html>

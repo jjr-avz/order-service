@@ -5,7 +5,8 @@
     if(isset($_SESSION['id'])){
         //Verificando se o cadastro pode acessar a funcionalidade
         if($_SESSION['cod_position'] != 2){
-            echo "<script>alert('Acesso Negado!'); window.location.href='dashboard.php';</script>";
+            echo "<script>alert('Acesso Negado!'); window.top.location.href='dashboard.php';</script>";
+            exit;
         }
 
         require_once('../methods/connection.php');
@@ -42,7 +43,8 @@
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 
 
@@ -65,14 +67,10 @@
 </head>
 <body>
     <div class="sf-area">
-        <input class="sf-input" id="search">
-            <a onclick="searchData()">
-                <i class="bi bi-search sf-icon"></i>
-            </a>
-        </input>
-        <a>
-            <i class="bi bi-funnel-fill sf-icon"></i>
-        </a>
+        <input class="sf-input" id="search" data-page="viewUsers.php" placeholder="Buscar">
+        <a onclick="searchData()" class="btn btn-success">
+            <i class="bi bi-search sf-icon"></i>
+        </a>        
     </div>
     <table class="table">
         <thead class="table-light">

@@ -33,12 +33,20 @@
         $end = ceil($maxRow/$limite);
     
         //CARREGANDO DADOS PARA MOSTRAR NA PAGINA
-        $stmt = $conn->prepare("SELECT * FROM services WHERE id_tech_design = ? AND status != 2 ORDER BY priority DESC LIMIT $inicio, $limite");
-        $stmt->bind_param("i", $_SESSION['id']);
+        if(!empty($_GET['search'])){
+            $data = "%".$_GET['search']."%";
+            $stmt = $conn->prepare("SELECT * FROM services WHERE id_tech_design = ? AND status != 2 AND (id LIKE ? or local_problem LIKE ? or brief_desc LIKE ?) ORDER BY priority DESC LIMIT $inicio, $limite");
+            $stmt->bind_param("iiss", $_SESSION['id'], $data, $data, $data);
+        }else{
+            $stmt = $conn->prepare("SELECT * FROM services WHERE id_tech_design = ? AND status != 2 ORDER BY priority DESC LIMIT $inicio, $limite");
+            $stmt->bind_param("i", $_SESSION['id']);
+        }
+
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 
 ?>
@@ -60,14 +68,10 @@
 </head>
 <body>
     <div class="sf-area">
-        <input class="sf-input">
-            <a>
-                <i class="bi bi-search sf-icon"></i>
-            </a>
-        </input>
-        <a>
-            <i class="bi bi-funnel-fill sf-icon"></i>
-        </a>
+        <input class="sf-input" id="search" data-page="myservices.php" placeholder="Buscar">
+        <a onclick="searchData()" class="btn btn-success">
+            <i class="bi bi-search sf-icon"></i>
+        </a>        
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -159,5 +163,7 @@
             </li>
         </ul>
     </nav>
+
+    <script src="../scripts/handleSearch.js"></script>
 </body>
 </html>

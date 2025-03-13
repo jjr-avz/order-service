@@ -38,7 +38,8 @@
         $stmt->execute();
         $res = $stmt->get_result();
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 ?>
 
@@ -57,11 +58,6 @@
     <link rel="stylesheet" href="../styles/buttonstable.css">
 </head>
 <body>
-    <div class="sf-area">              
-        <a class="btn btn-primary">
-            <i class="bi bi-funnel-fill sf-icon"></i>
-        </a>
-    </div>
     <div class="table-responsive">
         <table class="table">
             <thead class="table-light">

@@ -45,6 +45,7 @@ td{
     padding-top: 15px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 10px;
     padding-right: 35px;
 }
@@ -54,12 +55,15 @@ td{
     width: 25vw;
     border-radius: 20px;
     padding: 6px 16px;
+    margin: 0;
 }
 
 .sf-icon{
     font-size: 24px;
+    margin: 0;
 }
 
 .jj-send{
     padding: 3px 6px;
+    margin: 0;
 }

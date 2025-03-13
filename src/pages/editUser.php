@@ -31,7 +31,8 @@
             }
         }
     }else{
-        echo "<script>alert('Você precisa estar logado'); window.location.href='../../index.php';</script>";
+        echo "<script>alert('Você precisa estar logado'); window.top.location.href='../../index.php';</script>";
+        exit;
     }
 
 
@@ -73,7 +74,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Telefone</label>
-            <input type="text" class="form-control" name="contact" value="<?php echo $pushtel ?>" required>
+            <input type="text" class="form-control" id="numTel" name="contact" value="<?php echo $pushtel ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Local de trabalho</label>
@@ -115,5 +116,12 @@
 
         <button type="submit" name="update" id="update" class="btn btn-primary">Salvar</button>
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $('#numTel').mask('(00) 00000-0000');
+    </script>
 </body>
 </html>
