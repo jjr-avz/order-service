@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto Flex", serif;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    background-color: #0f8d50;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+footer > p{
+    color: #f5fde2;
+    margin: 0;
+    padding: 0;
+}
+
+footer > img{
+    height: 35px;
+}
+
+.areaDash{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+}
+.dashname{
+    font-size: 14px;
+    font-weight: bold;
+    color: #0f8d50;
+    text-align: center;
+}
+
+.dashposition{
+    font-size: 12px;
+    color: #b6b6b6;
+    text-align: center;
+}
+
+.container-sidebar{
+    width: 17%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 0 #b6b6b6;
+    transition: .2s;
+}
+
+.sidemenu{
+    height: 100vh;
+}
+
+.sidemenu ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidemenu ul li{
+    padding: 22px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.sidemenu ul li:last-child:hover{
+    background-color: #882525;
+}
+
+ ul li.ativo{
+    background-color: #0f8d50;
+}
+
+ ul li.ativo a{
+    color: #f5fde2 !important;
+}
+
+.area-user{
+    display: flex;
+    gap: 15px;
+    padding-top: 25px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.img-user{
+    font-size: 45px;
+    padding-left: 15px;
+}
+
+.item-menu{
+    padding: 0;
+}
+
+.info-user{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidemenu ul li:hover{
+    background-color: #0f8d50;
+}
+
+.sidemenu ul li:hover a{
+    color: #f5fde2;
+}
+
+.sidemenu ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    padding-left: 15px;
+    margin: 0;
+}
+
+.sidemenu ul li a i{
+    padding-right: 10px;
+    font-size: 22px;
+}
+
+.container-dashboard{
+    width: 100%;
+    display: flex;
+    margin-left: 1.5%;
+    border: none;
+}
+
+@media only screen and (max-width: 1190px){
+    .container-sidebar{
+        width: 55px;
+    }
+
+    .sidemenu ul li a{
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        width: 40px; /* Define um tamanho fixo para o botão */
+        overflow: hidden;
+        text-indent: -9999px; /* Esconde o texto acessível */
+    }
+
+    .sidemenu ul li a i{
+        text-indent: 0;
+    }
+
+    .dashposition{
+        display: none;
+    }
+
+    .dashname{
+        display: none;
+    }
+
+    .img-user{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+    }
+}

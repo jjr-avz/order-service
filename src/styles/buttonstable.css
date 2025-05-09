@@ -1,0 +1,69 @@
+a{
+    font-size: 16px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+button{
+    border: none;
+    font-size: 16px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+td{
+    font-size: 14px;
+    white-space: nowrap;
+        overflow: hidden; /* Esconde o conteúdo que ultrapassa */
+        text-overflow: ellipsis; /* Adiciona "..." caso fique muito grande */
+        max-width: 100%;
+    
+}
+
+.bt-edit{
+    background-color: #5e5e5e;
+    color: #fff;
+}
+
+.bt-delete{
+    background-color: rgb(184, 37, 37);
+    color: #fff;
+}
+
+.bt-entry{
+    color: #5e5e5e;
+}
+
+.disab{
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.sf-area{
+    width: 100%;
+    height: 7vh;
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding-right: 35px;
+}
+
+.sf-input{
+    height: 35px;
+    width: 25vw;
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin: 0;
+}
+
+.sf-icon{
+    font-size: 24px;
+    margin: 0;
+}
+
+.jj-send{
+    padding: 3px 6px;
+    margin: 0;
+}

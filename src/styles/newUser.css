@@ -1,0 +1,54 @@
+html{
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 25px;
+    background: none;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+}
+
+form div{
+    width: 80%;
+}
+
+.form-label{
+    font-size: 16px;
+}
+
+.header{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f8d50;
+}
+
+.cabecalhocadastro{
+    font-size: 28px;
+    color: #f5fde2;
+}
+
+.area-check{
+    display: flex;
+    margin-top: 25px;
+}
+
+button{
+    margin-top: 40px;
+}
