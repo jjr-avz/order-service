@@ -1,7 +1,7 @@
 <?php
 
     class Database{
-        private $host = "82.29.56.140:3600";
+        private $host = "82.29.56.140";
         private $db_name = "qualify";
         private $username = "root";
         private $password = "myadmin123";

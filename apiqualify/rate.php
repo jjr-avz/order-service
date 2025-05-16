@@ -10,13 +10,13 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $query = "INSERT INTO classification (unit_id, classification) VALUES (:unit_id, :classify)";
+    $query = "INSERT INTO answers (unit_id, answers, id_question) VALUES (:unit_id, :answers, :id_quest)";
     $stmt = $conn->prepare($query);
 
-    $stmt->bindParam(":unit_id", $data->unit);
-    $stmt->bindParam(":classify", $data->avalie);
-
-    $stmt->execute();
+    $stmt->bindParam(":unit_id", $data->idUnit);    
+    $stmt->bindParam(":id_quest", $data->id);
+    $stmt->bindParam(":answers", $data->answer);
+    $stmt->execute();    
 
     echo json_encode(["sucesso" => true]);
 
