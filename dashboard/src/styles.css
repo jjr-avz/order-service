@@ -5,7 +5,11 @@
 }
 
 body{
-    background-color: #d9fdee;
+    background-color: #000;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
 }
 
 .containerTable{
@@ -49,4 +53,13 @@ body{
 
 .iconps{
     background-color: #ff3a1c;
+}
+
+.containerGraph{
+    width: 84em;
+    height: 80vh;
+    border: 2px solid #8cf3c8;
+    border-radius: 6px;
+    margin-left: 2em;
+    background-color: #9cf5d0;
 }

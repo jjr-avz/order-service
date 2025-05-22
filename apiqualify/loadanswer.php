@@ -16,11 +16,20 @@
         $query = "SELECT * FROM answers";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-    
+
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $unitquery = "SELECT * FROM units";
+        $stmtunit = $conn->prepare($unitquery);
+        $stmtunit->execute();
+    
+        $unit = $stmtunit->fetchAll(PDO::FETCH_ASSOC);
     
         header("Content-Type: application/json");
-        echo json_encode($data);
+        echo json_encode([
+            "data" => $data,
+            "unit" => $unit
+        ]);
     } catch (PDOException $e){
         http_response_code(500);
         echo json_encode(["erro" => "Erro na comunicação: " . $e->getMessage()]);
