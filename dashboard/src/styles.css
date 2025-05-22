@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #d9fdee;
+}
+
+.containerTable{
+    width: 30em;
+    height: 80vh;
+    border: 2px solid #8cf3c8;
+    border-radius: 6px;
+    margin-left: 2em;
+    background-color: #9cf5d0;
+}
+
+.icontm{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.jj-divicon{
+    height: 26px;
+    width: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+}
+
+.iconexc{
+    background-color: #0a73ff;
+}
+
+.icongd{
+    background-color: #1aff6d ;
+}
+
+.iconrg{
+    background-color: #dbff3c;
+}
+
+.iconbd{
+    background-color: #ff9358;
+}
+
+.iconps{
+    background-color: #ff3a1c;
+}

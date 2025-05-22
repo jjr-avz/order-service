@@ -1,10 +1,10 @@
 <?php
 
     class Database{
-        private $host = "82.29.56.140";
+        private $host = "localhost";
         private $db_name = "qualify";
         private $username = "root";
-        private $password = "myadmin123";
+        private $password = "mYadmin1@3";
 
         public $conn;
 
