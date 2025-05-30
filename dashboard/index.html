@@ -16,34 +16,95 @@
 
 </head>
 <body>
-    <div class="containerTable">
-        <table class="table table-info table-striped-columns table-bordered">
-            <thead>
-                <tr>
-                    <th>Unidade</th>
-                    <th class="text-center"><div class="iconexc jj-divicon"><i class="bi bi-emoji-grin icontm"></i></div></i></th>
-                    <th class="text-center"><div class="icongd jj-divicon"><i class="bi bi-emoji-smile icontm"></i></div></th>
-                    <th class="text-center"><div class="iconrg jj-divicon"><i class="bi bi-emoji-neutral icontm"></i></div></th>
-                    <th class="text-center"><div class="iconbd jj-divicon"><i class="bi bi-emoji-frown icontm"></i></div></th>
-                    <th class="text-center"><div class="iconps jj-divicon"><i class="bi bi-emoji-angry icontm"></i></div></i></th>
-                </tr>
-            </thead>
-            <tbody id="bodyTable">
-                <!-- INSERIDO POR JS -->
-            </tbody>
-        </table>
-    </div>
+    <div class="area-body">
+        <div class="area-left">
+            <div class="filter-unit">
+                <label for="unit" class="txt-select">Selecione a unidade:</label>
     
-    <div class="containerGraph">
-        <h1>Aqui ficarão os graficos</h1>
+                <select name="unit" id="unit" class="fd-select">
+                    <option value="all">Todos</option>
+                    <option value="paco">Paço Municipal</option>
+                    <option value="stoantonio">ESF Santo Antonio</option>
+                    <option value="alvorada">ESF Alvorada</option>
+                </select>
+            </div>
+            <div class="area-status">
+                <div>
+                    <div class="icon-txt">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>347</span>
+                    </div>
+                    <span class="txt-status">Avaliações hoje</span>
+                </div>
+                <div>
+                    <div class="icon-txt">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <span>12</span>
+                    </div>
+                    <span class="txt-status">Avaliações baixas</span>
+                </div>
+            </div>
+    
+            <div class="containerTable">
+                <table class="table table-dark table-striped-columns table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Unidade</th>
+                            <th class="text-center"><div class="iconexc jj-divicon"><i class="bi bi-emoji-grin icontm"></i></div></i></th>
+                            <th class="text-center"><div class="icongd jj-divicon"><i class="bi bi-emoji-smile icontm"></i></div></th>
+                            <th class="text-center"><div class="iconrg jj-divicon"><i class="bi bi-emoji-neutral icontm"></i></div></th>
+                            <th class="text-center"><div class="iconbd jj-divicon"><i class="bi bi-emoji-frown icontm"></i></div></th>
+                            <th class="text-center"><div class="iconps jj-divicon"><i class="bi bi-emoji-angry icontm"></i></div></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                        <!-- INSERIDO POR JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="area-right">
+            <div class="area-date">
+                <div>
+                    <label class="txt-select">Periodo:</label>
+                    <div class="field-dt">
+                        <span>De: </span>
+                        <input type="date" class="ipt-date">
+                        <span> à </span>
+                        <input type="date" class="ipt-date">
+                    </div>
+                </div>
+            </div>
+            <div class="containerGraph">            
+                 <div class="graph-pizza">
+                    <div>
+                        <canvas id="pizza">
+    
+                        </canvas>
+                    </div>
+                 </div>
 
-    </div>
+                 <div class="graph-barchart">
+                    <canvas id="barchart" class="cv-barchart">
+                        <!-- AQUI SERA INSERIDO O GRAFICO BARCHART PELO JS -->
+                    </canvas>
+                 </div>
+            </div>
+        </div>
+    </div>    
+    
+    <footer>
+        <span>Prefeitura Municipal de Deodapolis. 2025</span>
+        <span>Todos os direitos reservados</span>
+    </footer>    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="src/scripts.js"></script>
 </body>
 </html>

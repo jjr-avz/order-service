@@ -11,6 +11,7 @@ fetch("http://82.29.56.140/apiqualify/loadanswer.php")
         console.log("Unidades: ", units);
 
         addLineTable();
+        handleBarChart();
 
     })
     .catch(erro => console.error("Erro ao carregar os dados:", erro));
@@ -62,3 +63,30 @@ function addLineTable(){
 
 }
 
+function handleBarChart(){
+    const ctx = document.getElementById('barchart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+}
+
+function handlePizza(){
+
+    
+}

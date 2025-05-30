@@ -5,20 +5,36 @@
 }
 
 body{
-    background-color: #000;
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+}
+
+footer{
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    height: 6vh;
+}
+
+.area-body{
+    display: flex;
     flex-direction: row;
+    flex: 1;
+    background-color: #d6d4d4;
 }
 
 .containerTable{
-    width: 30em;
-    height: 80vh;
-    border: 2px solid #8cf3c8;
+    height: 98%;
     border-radius: 6px;
-    margin-left: 2em;
-    background-color: #9cf5d0;
+    background-color: #295089;
+    margin-top: 10px;
+    padding: 10px;
 }
 
 .icontm{
@@ -56,10 +72,108 @@ body{
 }
 
 .containerGraph{
-    width: 84em;
-    height: 80vh;
-    border: 2px solid #8cf3c8;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 10px;
     border-radius: 6px;
-    margin-left: 2em;
-    background-color: #9cf5d0;
+    background-color: #295089;
+
+}
+
+.area-left{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.area-right{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+}
+
+.area-status{
+    background-color: #295089;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 6px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.icon-txt{
+    display: flex;
+    color: #fff;
+    gap: 10px;
+    font-size: 32px;
+    justify-content: center;
+}
+
+.txt-status{
+    color: #fff;
+    font-size: 13px;
+}
+
+.filter-unit{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.txt-select{
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.fd-select{
+    padding-left: 15px;
+    height: 40px;
+    background-color: #9c9b9b;
+    border: none;
+    border-radius: 6px;
+}
+
+.area-date{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    padding-right: 25px;
+}
+
+.field-dt{
+    padding-left: 15px;
+    height: 40px;
+    background-color: #9c9b9b;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    gap: 10px;
+}
+
+.ipt-date{
+    border: none;
+    background-color: transparent;
+}
+
+.graph-pizza{
+    background-color: #d6d4d4;
+    border-radius: 6px;
+    width: 75vw;
+    height: 30vh;
+}
+
+.graph-barchart{
+    display: flex;
+    width: 75vw;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
 }
