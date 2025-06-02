@@ -1,5 +1,10 @@
 let answers = [];
 let units = [];
+let count = {};
+let unitNames = [];
+let medias = [];
+
+
 
 fetch("http://82.29.56.140/apiqualify/loadanswer.php")
     .then(response => response.json())
@@ -10,14 +15,15 @@ fetch("http://82.29.56.140/apiqualify/loadanswer.php")
         console.log("Respostas: ", answers);
         console.log("Unidades: ", units);
 
+        calculeMedia();
         addLineTable();
         handleBarChart();
+        handlePizza();
 
     })
     .catch(erro => console.error("Erro ao carregar os dados:", erro));
 
 function calculeAnswers(){
-    const count = {};
 
     for(const answer of answers){
         const id = answer.unit_id;
@@ -29,15 +35,13 @@ function calculeAnswers(){
 
         count[id][note]++;
     }
-
-    return count;
 }
 
 function addLineTable(){
 
     const tbody = document.getElementById('bodyTable');
     let line = "";
-    const count = calculeAnswers();
+    calculeAnswers();
 
         for (const unit of units){
             const id = unit.id;
@@ -69,7 +73,7 @@ function handleBarChart(){
     new Chart(ctx, {
         type: 'bar',
         data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: unitNames,
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
@@ -87,6 +91,67 @@ function handleBarChart(){
 }
 
 function handlePizza(){
+    const ctx = document.getElementById('pizza').getContext('2d');
 
-    
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Ótimo', 'Bom', 'Regular', 'Ruim', 'Péssimo'],
+        datasets: [{
+          label: 'Avaliações',
+          data: [23, 14, 5, 5, 5],
+          backgroundColor: [
+            '#0a73ff',
+            '#1aff6d',
+            '#dbff3c',
+            '#ff9358',
+            '#ff3a1c'
+          ],
+          borderColor: [
+            '#0a73ff',
+            '#1aff6d',
+            '#dbff3c',
+            '#ff9358',
+            '#ff3a1c'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+            position: 'bottom'
+          },
+          title: {
+            display: true,
+            text: 'ESF SANTO ANTONIO'
+          }
+        }
+      }
+    });    
+}
+
+function calculeMedia(){    
+    unitNames = units.map(u => u.name_unit);
+
+    medias = units.map(unit => {
+        const c = count[unit.id] || {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+        let total = 0;
+        let soma = 0;
+
+        console.log("teste: ", count[unit.id])
+
+        for(let i = 1; i <= 5; i++){
+            const q = c[i] || 0;
+            soma += i * q;
+            total += q;
+        }
+
+        return total > 0 ? parseFloat((soma / total).toFixed(2)) : 0;
+    });
+
+    console.log("Media: ", medias);
+    console.log("Nomes Unidades: ", unitNames);
 }
