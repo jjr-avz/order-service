@@ -1,157 +1,148 @@
-let answers = [];
 let units = [];
-let count = {};
-let unitNames = [];
-let medias = [];
+
+fetch("https://jjavz.site/apiqualify/loadvotes.php")
+  .then(response => response.json())
+  .then(data => {
+    units = data;
+
+    handleTable();
+    handleBarChart();
+    handlePizza();
+  })
 
 
+function handleTable(){
+    const table = document.querySelector("table");
+    const body = document.createElement("tbody");
 
-fetch("http://82.29.56.140/apiqualify/loadanswer.php")
-    .then(response => response.json())
-    .then(data => {
-        answers = data.data;
-        units = data.unit;
+    for(const unit of units){
+        let tr = document.createElement("tr");
+        let uName = document.createElement("td"); 
+        let uExc = document.createElement("td"); 
+        let uGd = document.createElement("td"); 
+        let uReg = document.createElement("td"); 
+        let uBad = document.createElement("td"); 
+        let uVb = document.createElement("td");
 
-        console.log("Respostas: ", answers);
-        console.log("Unidades: ", units);
+        uName.innerHTML = unit.name;
+        uExc.innerHTML = unit.answer[4];
+        uGd.innerHTML = unit.answer[3];
+        uReg.innerHTML = unit.answer[2];
+        uBad.innerHTML = unit.answer[1];
+        uVb.innerHTML = unit.answer[0];
 
-        calculeMedia();
-        addLineTable();
-        handleBarChart();
-        handlePizza();
+        tr.appendChild(uName);
+        tr.appendChild(uExc);
+        tr.appendChild(uGd);
+        tr.appendChild(uReg);
+        tr.appendChild(uBad);
+        tr.appendChild(uVb);
 
-    })
-    .catch(erro => console.error("Erro ao carregar os dados:", erro));
-
-function calculeAnswers(){
-
-    for(const answer of answers){
-        const id = answer.unit_id;
-        const note = answer.answers;
-
-        if(!count[id]){
-            count[id] = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
-        }
-
-        count[id][note]++;
+        body.appendChild(tr);
     }
-}
 
-function addLineTable(){
-
-    const tbody = document.getElementById('bodyTable');
-    let line = "";
-    calculeAnswers();
-
-        for (const unit of units){
-            const id = unit.id;
-            const name = unit.name_unit;
-            const c = count[id] || {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
-        
-            line += `
-                <tr>
-                    <td>${name}</td>
-                    <td>${c[5]}</td>
-                    <td>${c[4]}</td>
-                    <td>${c[3]}</td>
-                    <td>${c[2]}</td>
-                    <td>${c[1]}</td>
-
-                </td>
-            `
-        }
-
-    tbody.innerHTML = line;
-
-    console.log(count);
-
+    table.appendChild(body);
 }
 
 function handleBarChart(){
+
+    const nameUnit = units.map(u => u.name);
+    const mediaUnit = units.map(u => u.media);
+
+    const barBackground = units.map(u => {
+        const media = u.media;
+        if(media >= 4) return 'rgba(54, 162, 235, 0.9)';
+        if(media >= 3) return 'rgba(75, 210, 98, 0.9)';
+        if(media >= 2) return 'rgba(255, 205, 86, 0.9)';
+        if(media >= 1) return 'rgba(255, 159, 64, 0.9)';
+        return 'rgba(255, 99, 99, 0.8)';
+    })
+
     const ctx = document.getElementById('barchart');
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-        labels: unitNames,
+        labels: nameUnit,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Média de votos por unidade',
+            data: mediaUnit,
+            backgroundColor: barBackground,
+            borderColor: barBackground,
             borderWidth: 1
         }]
         },
         options: {
-        scales: {
-            y: {
-            beginAtZero: true
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks:{
+                        color: '#fff'
+                    }
+                },
+                x: {
+                    ticks:{
+                        color: '#fff'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Média de Votos por unidade',
+                    color: '#fff'
+                }
             }
-        }
         }
     });
 }
 
 function handlePizza(){
-    const ctx = document.getElementById('pizza').getContext('2d');
+    const ctx = document.getElementById('area-pizza');
 
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Ótimo', 'Bom', 'Regular', 'Ruim', 'Péssimo'],
-        datasets: [{
-          label: 'Avaliações',
-          data: [23, 14, 5, 5, 5],
-          backgroundColor: [
-            '#0a73ff',
-            '#1aff6d',
-            '#dbff3c',
-            '#ff9358',
-            '#ff3a1c'
-          ],
-          borderColor: [
-            '#0a73ff',
-            '#1aff6d',
-            '#dbff3c',
-            '#ff9358',
-            '#ff3a1c'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            position: 'bottom'
-          },
-          title: {
-            display: true,
-            text: 'ESF SANTO ANTONIO'
-          }
+    for(const unit of units){
+        if(unit.media != null){
+            const canvas = document.createElement('canvas');
+        
+            new Chart(canvas, {
+              type: 'pie',
+              data: {
+                labels: ['Péssimo', 'Ruim', 'Regular', 'Bom', 'Excelente'],
+                datasets: [{
+                  label: 'Avaliações',
+                  data: unit.answer,
+                  backgroundColor: [
+                    '#ff3a1c',
+                    '#ff9358',
+                    '#dbff3c',
+                    '#1aff6d',
+                    '#0a73ff'
+                  ],
+                  borderColor: [
+                    '#d5d5d5'            
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: false,
+                    position: 'bottom'
+                  },
+                  title: {
+                    display: true,
+                    text: unit.name,
+                    color: '#000'
+                  }
+                }
+              }
+            });    
+            ctx.appendChild(canvas);
         }
-      }
-    });    
-}
-
-function calculeMedia(){    
-    unitNames = units.map(u => u.name_unit);
-
-    medias = units.map(unit => {
-        const c = count[unit.id] || {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
-        let total = 0;
-        let soma = 0;
-
-        console.log("teste: ", count[unit.id])
-
-        for(let i = 1; i <= 5; i++){
-            const q = c[i] || 0;
-            soma += i * q;
-            total += q;
-        }
-
-        return total > 0 ? parseFloat((soma / total).toFixed(2)) : 0;
-    });
-
-    console.log("Media: ", medias);
-    console.log("Nomes Unidades: ", unitNames);
+    }
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dash Classificação - Deodapolis/MS</title>
 
+    <link rel="icon" href="./src/imgs/dashboard.png" type="image/png">
+
     <link rel="stylesheet" href="src/styles.css">
 
     <!-- IMPORTAÇÃO DATATABLES -->
@@ -46,7 +48,7 @@
             </div>
     
             <div class="containerTable">
-                <table class="table table-dark table-striped-columns table-bordered">
+                <table class="table table-secondary table-striped-columns">
                     <thead>
                         <tr>
                             <th>Unidade</th>
@@ -56,10 +58,7 @@
                             <th class="text-center"><div class="iconbd jj-divicon"><i class="bi bi-emoji-frown icontm"></i></div></th>
                             <th class="text-center"><div class="iconps jj-divicon"><i class="bi bi-emoji-angry icontm"></i></div></i></th>
                         </tr>
-                    </thead>
-                    <tbody id="bodyTable">
-                        <!-- INSERIDO POR JS -->
-                    </tbody>
+                    </thead>                   
                 </table>
             </div>
         </div>
@@ -78,10 +77,8 @@
             </div>
             <div class="containerGraph">            
                  <div class="graph-pizza">
-                    <div class="area-pizza">
-                        <canvas id="pizza" class="cv-pizza">
-    
-                        </canvas>
+                    <div class="area-pizza" id="area-pizza">
+                        
                     </div>
                     <div class="legends">
                         <span>
